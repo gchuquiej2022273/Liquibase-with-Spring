@@ -1,0 +1,26 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="5" author="gerson">
+        <createTable tableName="audit">
+            <column name="audit_id" type="iNT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="entity" type="VARCHAR(130)"/>
+            <column name="date_time" type="TIMESTAMP"/>
+            <column name="operation" type="VARCHAR(70)"/>
+            <column name="request" type="JSONB"/>
+            <column name="response" type="JSONB"/>
+            <column name="http_status_code" type="INT"/>
+            <column name="url" type="VARCHAR(255)"/>
+            <column name="user_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_audit_user" references="users(user_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
